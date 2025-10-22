@@ -1,38 +1,49 @@
 # GitOps Laboratorio Práctico
 ## Infraestructura y Despliegues Auditables con Terraform, Argo CD y Helm
 
-Este repositorio contiene un laboratorio completo y práctico para implementar GitOps usando las herramientas más populares del ecosistema: **Terraform**, **Argo CD** y **Helm**.
+Este repositorio contiene un laboratorio **educativo y práctico** para aprender GitOps paso a paso usando las herramientas fundamentales: **Terraform**, **Argo CD** y **Helm** en un entorno **local**.
+
+## 🎯 Objetivo del Laboratorio
+
+Desarrollar el potencial de cada herramienta mediante **casos de uso prácticos** que demuestren:
+- **GitOps** como metodología de despliegue
+- **Kubernetes** como plataforma de orquestación
+- **Helm** para gestión de aplicaciones
+- **Terraform** para infraestructura como código
+- **Argo CD** para sincronización automática
 
 ## 📋 Tabla de Contenidos
 
 1. [Requisitos Previos](#requisitos-previos)
 2. [Estructura del Proyecto](#estructura-del-proyecto)
-3. [Laboratorios Disponibles](#laboratorios-disponibles)
-4. [Guía de Inicio Rápido](#guía-de-inicio-rápido)
-5. [Casos de Uso Prácticos](#casos-de-uso-prácticos)
-6. [Scripts de Automatización](#scripts-de-automatización)
+3. [Laboratorios Manuales](#laboratorios-manuales)
+4. [Casos de Uso Prácticos](#casos-de-uso-prácticos)
+5. [Configuración Local](#configuración-local)
 
 ## 🔧 Requisitos Previos
 
-Antes de comenzar, asegúrate de tener instalado y configurado:
+### Herramientas Necesarias (Entorno Local)
+- **kubectl** (v1.24+) - Cliente de Kubernetes
+- **helm** (v3.10+) - Gestor de paquetes para Kubernetes
+- **terraform** (v1.5+) - Infraestructura como código
+- **argocd CLI** (v2.7+) - Cliente de Argo CD
+- **docker** (v20.10+) - Contenedores
+- **git** (v2.30+) - Control de versiones
 
-### Herramientas Obligatorias
-- **kubectl** (v1.24+)
-- **helm** (v3.10+)
-- **terraform** (v1.5+)
-- **argocd CLI** (v2.7+)
-- **docker** (v20.10+)
-- **git** (v2.30+)
-
-### Clúster Kubernetes
-- **Minikube** (recomendado para desarrollo local)
+### Clúster Kubernetes Local
+- **Minikube** (recomendado para aprendizaje)
 - **Kind** (alternativa ligera)
-- **Clúster en la nube** (EKS, GKE, AKS)
+- **Docker Desktop** (con Kubernetes habilitado)
 
-### Verificación de Requisitos
+### Verificación Manual
 ```bash
-# Ejecuta el script de verificación
-./scripts/check-requirements.sh
+# Verificar herramientas instaladas
+kubectl version --client
+helm version
+terraform version
+argocd version --client
+docker --version
+git --version
 ```
 
 ## 📁 Estructura del Proyecto
@@ -55,65 +66,94 @@ gitops/
 └── examples/             # Ejemplos y casos de uso
 ```
 
-## 🧪 Laboratorios Disponibles
+## 🧪 Laboratorios Manuales
 
-### Laboratorio 1: Configuración Inicial
-- [ ] Verificación de requisitos
-- [ ] Configuración del clúster Kubernetes
-- [ ] Instalación de Argo CD
-- [ ] Configuración inicial de GitOps
+### Laboratorio 1: Configuración Local
+**Objetivo**: Configurar entorno local paso a paso
+- Configuración manual de Minikube
+- Instalación manual de Argo CD
+- Configuración inicial de GitOps
+- Primeros comandos de kubectl y helm
 
-### Laboratorio 2: Infraestructura con Terraform
-- [ ] Creación de recursos básicos
-- [ ] Configuración de módulos
-- [ ] Gestión de estados
-- [ ] Integración con Kubernetes
+### Laboratorio 2: Fundamentos de Kubernetes
+**Objetivo**: Entender Kubernetes desde cero
+- Creación manual de pods y servicios
+- ConfigMaps y Secrets
+- Deployments y ReplicaSets
+- Ingress y networking
 
-### Laboratorio 3: Aplicaciones con Helm
-- [ ] Creación de Helm charts
-- [ ] Configuración de valores
-- [ ] Gestión de dependencias
-- [ ] Testing de charts
+### Laboratorio 3: Helm Charts Prácticos
+**Objetivo**: Dominar Helm charts
+- Creación manual de charts
+- Templates y valores
+- Dependencias entre charts
+- Testing y debugging
 
-### Laboratorio 4: GitOps con Argo CD
-- [ ] Configuración de aplicaciones
-- [ ] Sincronización automática
-- [ ] Gestión de proyectos
-- [ ] Monitoreo y alertas
+### Laboratorio 4: Argo CD en Acción
+**Objetivo**: Implementar GitOps real
+- Configuración manual de aplicaciones
+- Sincronización automática
+- Gestión de proyectos
+- Troubleshooting común
 
-### Laboratorio 5: Casos de Uso Avanzados
-- [ ] Multi-ambiente (dev/staging/prod)
-- [ ] Gestión de secretos
-- [ ] Rollbacks automáticos
-- [ ] CI/CD integration
+### Laboratorio 5: Casos de Uso GitOps
+**Objetivo**: Aplicar GitOps en escenarios reales
+- Aplicación web completa
+- API con base de datos
+- Monitoreo básico
+- Gestión de secretos
 
-## 🚀 Guía de Inicio Rápido
+## 🚀 Configuración Local Paso a Paso
 
-1. **Clona y configura el repositorio:**
-   ```bash
-   git clone <tu-repositorio>
-   cd gitops
-   ```
+### 1. Preparar el Entorno
+```bash
+# Clonar el repositorio
+git clone https://github.com/VictorGSandoval/gitops.git
+cd gitops
 
-2. **Verifica los requisitos:**
-   ```bash
-   ./scripts/check-requirements.sh
-   ```
+# Verificar herramientas instaladas
+kubectl version --client
+helm version
+terraform version
+argocd version --client
+```
 
-3. **Inicia el clúster local:**
-   ```bash
-   ./scripts/setup-cluster.sh
-   ```
+### 2. Configurar Minikube
+```bash
+# Iniciar Minikube
+minikube start --memory=4096 --cpus=2
 
-4. **Despliega todo el laboratorio:**
-   ```bash
-   ./scripts/deploy-lab.sh dev minikube
-   ```
+# Verificar cluster
+kubectl get nodes
+kubectl cluster-info
+```
 
-5. **Valida el despliegue:**
-   ```bash
-   ./scripts/validate-lab.sh
-   ```
+### 3. Instalar Argo CD Manualmente
+```bash
+# Crear namespace
+kubectl create namespace argocd
+
+# Instalar Argo CD
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Esperar que esté listo
+kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
+```
+
+### 4. Acceder a Argo CD
+```bash
+# Port forward para acceso local
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+# Obtener contraseña inicial
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
+### 5. Comenzar con los Laboratorios
+- Accede a Argo CD: https://localhost:8080
+- Usuario: `admin`
+- Contraseña: (obtenida en paso anterior)
+- Sigue los laboratorios en orden secuencial
 
 ## 📚 Casos de Uso Prácticos
 
