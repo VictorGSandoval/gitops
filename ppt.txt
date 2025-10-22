@@ -1,0 +1,86 @@
+Diapositiva 1: Título
+
+GitOps aplicado: Infraestructura y despliegues auditables con Terraform, Argo CD y Helm
+
+Diapositiva 2: Agenda
+
+Introducción a GitOps
+
+Herramientas clave en GitOps
+
+Flujo de trabajo GitOps
+
+Ventajas de GitOps
+
+Desafíos de GitOps
+
+Caso práctico
+
+Diapositiva 3: ¿Qué es GitOps?
+
+GitOps es un enfoque para la gestión de infraestructura usando Git como fuente de la verdad.
+
+El enfoque permite automatizar y controlar despliegues de aplicaciones e infraestructura mediante pull requests y herramientas de CI/CD.
+
+Ventajas:
+
+Todo cambio se versiona y audita a través de Git.
+
+Proceso completamente automatizado, desde la infraestructura hasta el despliegue de aplicaciones.
+
+Diapositiva 4: Herramientas clave en GitOps
+Terraform
+
+Infraestructura como código (IaC).
+
+Permite provisionar y automatizar recursos en la nube de forma sencilla y auditable.
+
+Argo CD
+
+Herramienta para gestionar despliegues en Kubernetes.
+
+Utiliza GitOps para sincronizar cambios entre el repositorio Git y el entorno Kubernetes.
+
+Helm
+
+Gestor de paquetes para Kubernetes.
+
+Instalación y gestión de aplicaciones dentro de Kubernetes mediante "charts" reutilizables.
+
+Diapositiva 5: Flujo de trabajo GitOps
+
+Terraform define la infraestructura como código.
+
+Argo CD supervisa el repositorio Git para detectar cambios y automatiza el despliegue en Kubernetes.
+
+Helm se utiliza para gestionar y desplegar aplicaciones dentro de Kubernetes.
+
+Proceso completo:
+
+La infraestructura se crea y se gestiona mediante Terraform.
+
+Los cambios en la infraestructura y aplicaciones se gestionan mediante Argo CD, lo que asegura que todo esté sincronizado con el repositorio Git.
+
+Helm permite el empaquetado de aplicaciones y facilita su despliegue en Kubernetes.
+
+Diapositiva 6: Ventajas de GitOps
+
+Visibilidad completa de todos los cambios de infraestructura.
+
+Automatización de los despliegues y actualizaciones.
+
+Auditabilidad: Todo está versionado en Git, por lo que cada cambio queda registrado.
+
+Mejora de la seguridad: Los cambios son más fáciles de auditar y controlar.
+
+Escalabilidad: GitOps facilita la escalabilidad de infraestructuras y aplicaciones.
+
+Diapositiva 7: Desafíos de GitOps
+
+Curva de aprendizaje: Los equipos que no están familiarizados con herramientas como Terraform, Argo CD y Helm pueden encontrar cierta complejidad al principio.
+
+Integración con sistemas legados: GitOps requiere una infraestructura que siga la filosofía de "infraestructura como código", lo que puede ser difícil de implementar en sistemas existentes.
+
+Gestión de secretos: La gestión de secretos y configuraciones sensibles dentro de un flujo GitOps requiere medidas adicionales de seguridad.
+
+Sincronización de recursos: Mantener la sincronización entre el estado real de la infraestructura y lo definido en el repositorio Git puede ser un desafío.

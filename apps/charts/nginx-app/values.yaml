@@ -1,0 +1,80 @@
+# Configuración por defecto
+replicaCount: 2
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "1.21"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: nginx.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Configuración personalizada
+config:
+  customHtml: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>GitOps Lab - Nginx App</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; }
+            .container { max-width: 800px; margin: 0 auto; }
+            .header { background: #2c3e50; color: white; padding: 20px; border-radius: 5px; }
+            .content { padding: 20px; background: #ecf0f1; border-radius: 5px; margin-top: 20px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>🚀 GitOps Lab</h1>
+                <p>Aplicación Nginx desplegada con Helm</p>
+            </div>
+            <div class="content">
+                <h2>Información del Pod</h2>
+                <p><strong>Hostname:</strong> <span id="hostname"></span></p>
+                <p><strong>Timestamp:</strong> <span id="timestamp"></span></p>
+                <script>
+                    document.getElementById('hostname').textContent = window.location.hostname;
+                    document.getElementById('timestamp').textContent = new Date().toLocaleString();
+                </script>
+            </div>
+        </div>
+    </body>
+    </html>
