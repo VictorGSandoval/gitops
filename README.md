@@ -1,24 +1,19 @@
-# GitOps Laboratorio Práctico
-## Infraestructura y Despliegues Auditables con Terraform, Argo CD y Helm
+# GitOps Laboratorio Práctico - Enfoque Simple
 
-Este repositorio contiene un laboratorio **educativo y práctico** para aprender GitOps paso a paso usando las herramientas fundamentales: **Terraform**, **Argo CD** y **Helm** en un entorno **local**.
+## 🎯 Objetivo
 
-## 🎯 Objetivo del Laboratorio
+Aprender GitOps de forma **progresiva y simple**, empezando con lo básico y avanzando gradualmente:
 
-Desarrollar el potencial de cada herramienta mediante **casos de uso prácticos** que demuestren:
-- **GitOps** como metodología de despliegue
-- **Kubernetes** como plataforma de orquestación
-- **Helm** para gestión de aplicaciones
-- **Terraform** para infraestructura como código
-- **Argo CD** para sincronización automática
+1. **YAMLs básicos** → Argo CD los sincroniza
+2. **Helm charts simples** → Argo CD maneja charts
+3. **Casos prácticos** → Aplicaciones reales
 
 ## 📋 Tabla de Contenidos
 
 1. [Requisitos Previos](#requisitos-previos)
-2. [Estructura del Proyecto](#estructura-del-proyecto)
-3. [Laboratorios Manuales](#laboratorios-manuales)
+2. [Laboratorios Simples](#laboratorios-simples)
+3. [Configuración Local](#configuración-local)
 4. [Casos de Uso Prácticos](#casos-de-uso-prácticos)
-5. [Configuración Local](#configuración-local)
 
 ## 🔧 Requisitos Previos
 
@@ -66,42 +61,25 @@ gitops/
 └── examples/             # Ejemplos y casos de uso
 ```
 
-## 🧪 Laboratorios Manuales
+## 🧪 Laboratorios Simples
 
-### Laboratorio 1: Configuración Local
-**Objetivo**: Configurar entorno local paso a paso
-- Configuración manual de Minikube
-- Instalación manual de Argo CD
-- Configuración inicial de GitOps
-- Primeros comandos de kubectl y helm
+### Laboratorio 1: GitOps Básico
+**Objetivo**: Empezar con YAMLs simples
+- Deployment, Service, ConfigMap básicos
+- Argo CD sincroniza automáticamente
+- Cambios en Git se aplican automáticamente
 
-### Laboratorio 2: Fundamentos de Kubernetes
-**Objetivo**: Entender Kubernetes desde cero
-- Creación manual de pods y servicios
-- ConfigMaps y Secrets
-- Deployments y ReplicaSets
-- Ingress y networking
+### Laboratorio 2: GitOps con Helm Simple
+**Objetivo**: Introducir Helm gradualmente
+- Chart Helm básico
+- Valores por ambiente
+- Argo CD maneja charts desde Git
 
-### Laboratorio 3: Helm Charts Prácticos
-**Objetivo**: Dominar Helm charts
-- Creación manual de charts
-- Templates y valores
-- Dependencias entre charts
-- Testing y debugging
-
-### Laboratorio 4: Argo CD en Acción
-**Objetivo**: Implementar GitOps real
-- Configuración manual de aplicaciones
-- Sincronización automática
-- Gestión de proyectos
-- Troubleshooting común
-
-### Laboratorio 5: Casos de Uso GitOps
-**Objetivo**: Aplicar GitOps en escenarios reales
+### Laboratorio 3: Casos Prácticos
+**Objetivo**: Aplicaciones reales
 - Aplicación web completa
 - API con base de datos
 - Monitoreo básico
-- Gestión de secretos
 
 ## 🚀 Configuración Local Paso a Paso
 
@@ -157,79 +135,94 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ## 📚 Casos de Uso Prácticos
 
-- **Aplicación Web Simple**: Nginx con configuración básica
-- **API REST**: Aplicación Node.js con base de datos
-- **Microservicios**: Arquitectura distribuida con múltiples servicios
-- **Monitoreo**: Stack completo con Prometheus y Grafana
-- **CI/CD Pipeline**: Integración con GitHub Actions
+- **Aplicación Simple**: YAMLs básicos con Argo CD
+- **Helm Chart Básico**: Chart simple con valores por ambiente
+- **Aplicación Web**: Nginx con configuración personalizada
+- **API Básica**: Node.js con base de datos simple
 
-## 🛠️ Scripts de Automatización
+## 🎓 Enfoque Simple y Progresivo
 
-### Scripts Disponibles
-- **`check-requirements.sh`**: Verifica que todas las herramientas estén instaladas
-- **`setup-cluster.sh`**: Configura el clúster Kubernetes local
-- **`deploy-lab.sh`**: Despliega todo el laboratorio automáticamente
-- **`validate-lab.sh`**: Valida que todo esté funcionando correctamente
+### Metodología Gradual
+Este laboratorio está diseñado para **aprender paso a paso** sin complejidad innecesaria:
 
-### Uso de Scripts
-```bash
-# Verificar requisitos
-./scripts/check-requirements.sh
+- **Empezar Simple**: YAMLs básicos que todos entienden
+- **Progresar Gradualmente**: Introducir Helm cuando sea necesario
+- **Casos Reales**: Aplicaciones que realmente funcionan
+- **Sin Complejidad**: Sin scripts, sin configuraciones complejas
 
-# Configurar cluster
-./scripts/setup-cluster.sh --minikube
-# o
-./scripts/setup-cluster.sh --kind
-
-# Desplegar laboratorio
-./scripts/deploy-lab.sh dev minikube
-# o
-./scripts/deploy-lab.sh prod kind
-
-# Validar despliegue
-./scripts/validate-lab.sh
-```
+### Ventajas del Enfoque Simple
+- ✅ **Fácil de Entender**: Conceptos básicos primero
+- ✅ **Progresivo**: Cada paso construye sobre el anterior
+- ✅ **Práctico**: Aplicaciones que realmente funcionan
+- ✅ **Sin Confusión**: Sin herramientas innecesarias
 
 ## 🔗 Acceso a Aplicaciones
 
 ### Argo CD
-- **Minikube**: `kubectl port-forward svc/argocd-server -n argocd 8080:443`
-- **Kind**: `http://argocd.local`
+- **Acceso**: `kubectl port-forward svc/argocd-server -n argocd 8080:443`
+- **URL**: https://localhost:8080
 - **Usuario**: `admin`
-- **Contraseña**: (se muestra en la salida del script)
+- **Contraseña**: `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
 
-### Aplicaciones
-- **Nginx Dev**: `kubectl port-forward svc/nginx-app -n dev 8081:80`
-- **API Dev**: `kubectl port-forward svc/api-app -n dev 8082:3000`
+### Aplicaciones Desplegadas
+- **Web App Dev**: `kubectl port-forward svc/web-app -n dev 8080:80`
+- **API App**: `kubectl port-forward svc/api-app -n dev 3000:3000`
+- **Monitoreo Grafana**: `kubectl port-forward svc/monitoring-grafana -n monitoring 3001:80`
 
-### Monitoreo
-- **Grafana**: `kubectl port-forward svc/monitoring-stack-grafana -n monitoring 3000:80`
-- **Prometheus**: `kubectl port-forward svc/monitoring-stack-prometheus -n monitoring 9090:9090`
+### Comandos Útiles
+```bash
+# Ver todas las aplicaciones Argo CD
+argocd app list
 
-## 🎯 Conceptos Clave
+# Ver recursos por namespace
+kubectl get all -n dev
+kubectl get all -n prod
+kubectl get all -n monitoring
+
+# Ver logs de aplicaciones
+kubectl logs -l app.kubernetes.io/name=web-app -n dev
+kubectl logs -l app.kubernetes.io/name=api-app -n dev
+```
+
+## 🎯 Conceptos Clave Aprendidos
 
 ### GitOps
 - **Definición**: Enfoque para gestión de infraestructura usando Git como fuente de verdad
 - **Ventajas**: Automatización, auditabilidad, trazabilidad
 - **Herramientas**: Argo CD, Flux, Jenkins X
 
-### Infraestructura como Código
-- **Definición**: Gestión de infraestructura mediante archivos de configuración
-- **Ventajas**: Versionado, reutilización, automatización
-- **Herramientas**: Terraform, Pulumi, CloudFormation
+### Kubernetes
+- **Pods**: Unidad básica de despliegue
+- **Services**: Exposición de aplicaciones
+- **Deployments**: Gestión de réplicas y actualizaciones
+- **ConfigMaps y Secrets**: Configuración y datos sensibles
+- **Ingress**: Acceso externo a aplicaciones
 
 ### Helm
-- **Definición**: Gestor de paquetes para Kubernetes
-- **Ventajas**: Empaquetado, reutilización, gestión de dependencias
-- **Conceptos**: Charts, Values, Templates
+- **Charts**: Empaquetado de aplicaciones Kubernetes
+- **Templates**: Generación dinámica de manifiestos
+- **Values**: Configuración específica por ambiente
+- **Dependencies**: Gestión de dependencias entre charts
+
+### Argo CD
+- **Aplicaciones**: Unidades de despliegue GitOps
+- **Sincronización**: Mantenimiento automático del estado
+- **Proyectos**: Organización y control de acceso
+- **Multi-Ambiente**: Gestión de diferentes entornos
 
 ## 🚀 Próximos Pasos
 
-1. **Explorar laboratorios**: Sigue los laboratorios en orden secuencial
-2. **Personalizar configuraciones**: Modifica valores según tus necesidades
-3. **Agregar casos de uso**: Implementa nuevos escenarios
+1. **Seguir Laboratorios**: Ejecuta los laboratorios en orden secuencial
+2. **Personalizar Configuraciones**: Modifica valores según tus necesidades
+3. **Agregar Casos de Uso**: Implementa nuevos escenarios
 4. **Integrar con CI/CD**: Configura pipelines automatizados
-5. **Escalar horizontalmente**: Agrega más ambientes y aplicaciones
+5. **Escalar Horizontalmente**: Agrega más ambientes y aplicaciones
+
+## 📚 Documentación Detallada
+
+- **[Laboratorio 1](docs/lab-01-simple-gitops.md)**: GitOps Básico - Empezando Simple
+- **[Laboratorio 2](docs/lab-02-simple-helm.md)**: GitOps con Helm Simple
+- **[Laboratorio 3](docs/lab-03-practical-cases.md)**: Casos Prácticos (próximamente)
 
 ## 🤝 Contribuciones
 
