@@ -1,0 +1,38 @@
+# Default values for nginx-chart
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: "1.25"
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30082
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+ingress:
+  enabled: false
+
+configmap:
+  data: |
+    server {
+        listen 80;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html;
+        }
+        location /health {
+            return 200 'healthy\n';
+        }
+    }
+
+environment: dev

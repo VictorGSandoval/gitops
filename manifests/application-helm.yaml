@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-helm
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/VictorGSandoval/gitops.git
+    targetRevision: HEAD
+    path: manifests/helm/nginx-chart
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-helm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
