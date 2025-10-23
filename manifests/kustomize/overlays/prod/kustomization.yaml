@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+namespace: demo-prod
+
+commonLabels:
+  environment: prod
+
+patches:
+- path: replicas-patch.yaml
+- path: resources-patch.yaml
+
+images:
+- name: nginx
+  newTag: 1.25-alpine

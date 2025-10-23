@@ -74,15 +74,6 @@ http://localhost:30081
 ```bash
 kubectl get pods -n demo
 ```
-
-## Parte 2: Kustomize (Próximamente)
-
-Evolucionar a Kustomize para manejar variaciones de ambiente.
-
-## Parte 3: Helm Charts (Próximamente)
-
-Finalizar con Helm Charts para despliegues más complejos.
-
 ## Verificación
 
 ```bash
