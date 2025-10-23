@@ -61,6 +61,12 @@ kubectl get configmap -n demo-helm
 ## Parte 3: Personalización
 
 1. Probar la aplicación:
+
+```bash
+# Para exponer la aplicación a tu local
+kubectl port-forward svc/nginx-helm-service  8081:80 -n demo-helm
+```
+
 ```bash
 # La aplicación estará disponible en:
 http://localhost:30082
