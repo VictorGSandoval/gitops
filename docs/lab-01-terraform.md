@@ -61,3 +61,24 @@ Para eliminar todo lo creado:
 ```bash
 terraform destroy -auto-approve
 ```
+
+## *Opcional 
+
+Para crear un nginx de prueba en cluster:
+
+```bash
+# 1. Crear deployment
+kubectl create deployment nginx --image=nginx
+
+# 2. Exponer como NodePort (IMPORTANTE)
+kubectl expose deployment nginx --port=80 --type=NodePort
+
+# 3. Ver el servicio y el puerto asignado
+kubectl get svc nginx
+
+# Redirección temporal
+kubectl port-forward svc/nginx 8081:80
+
+# Luego acceder a:
+http://localhost:8081
+```
