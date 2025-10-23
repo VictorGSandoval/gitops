@@ -15,4 +15,4 @@ patches:
 
 images:
 - name: nginx
-  newTag: 1.25-alpine
+  newTag: "1.25-alpine"
