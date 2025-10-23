@@ -40,7 +40,7 @@ kubectl -n argocd get secret argocd-secret -o jsonpath="{.data.admin\.password}"
 
 http://localhost:30080
 Usuario: admin
-Contraseña: [resultado del comando anterior]
+Contraseña: [resultado del comando anterior] ó custom: pssadmin123!
 
 ## Limpieza con Helm
 
