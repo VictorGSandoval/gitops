@@ -41,6 +41,20 @@ docker --version
 git --version
 ```
 
+## Notas de seguridad (importante)
+
+Este repositorio incluye un archivo `.gitignore` en la raíz. Asegúrate de NO subir archivos sensibles ni estados de Terraform al repositorio.
+
+Elementos que deben mantenerse locales y fuera de Git:
+
+- `terraform.tfstate`, `terraform.tfstate.backup`, `*.tfvars`, `secret.auto.tfvars`
+- Claves privadas y certificados: `*.pem`, `*.key`, `*.crt`
+- Directorios y archivos generados: `.terraform/`, `*.tfplan`
+- Configuraciones locales de kubectl: `~/.kube/config`
+
+Antes de commitear, revisa `git status` y usa `git diff` para confirmar que no estés subiendo secretos.
+
+
 ## 📁 Estructura del Proyecto
 
 ```

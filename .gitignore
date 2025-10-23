@@ -1,0 +1,52 @@
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.tfstate
+.terraform.tfstate.backup
+terraform.tfvars
+terraform.tfvars.json
+secret.auto.tfvars
+*.pem
+*.key
+*.crt
+
+# Local Kind clusters and Docker
+.kube/
+kind/
+
+# kubectl configs
+~/.kube/config
+.kube/config
+
+# Editor and OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Generated build files
+dist/
+build/
+
+# Ignore credentials files
+.env
+.env.*
+
+# Ignore temporary files
+*.tmp
+*.bak
+
+# Ignore local plan files
+*.tfplan
+
+# Helm cache
+.helm/
