@@ -35,6 +35,14 @@ terraform apply -auto-approve
 # Listar todos los contextos disponibles
 kubectl config get-contexts
 
+# Cambiar entre clusters
+kubectl config use-context kind-gitops-demo      # Ir a Kind
+
+kubectl config use-context docker-desktop        # Ir a Docker Desktop
+
+# Ver el cluster actual
+kubectl config current-context
+
 # Configurar kubectl para usar el nuevo cluster
 kubectl cluster-info --context kind-gitops-demo
 
