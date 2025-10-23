@@ -83,8 +83,24 @@ resource "helm_release" "argocd" {
     configs:
       params:
         server.insecure: true
+      secret:
+        existingSecret: "argocd-secret"
     EOT
   ]
+
+  depends_on = [kubernetes_namespace.argocd]
+}
+
+# Crear secret Argo
+resource "kubernetes_secret" "argocd_admin_password" {
+  metadata {
+    name      = "argocd-secret"
+    namespace = kubernetes_namespace.argocd.metadata[0].name
+  }
+
+  data = {
+    "admin.password" = base64encode("pssadmin123!")
+  }
 
   depends_on = [kubernetes_namespace.argocd]
 }
