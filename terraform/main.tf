@@ -107,7 +107,7 @@ resource "kubernetes_secret" "argocd_admin_password" {
     }
   }
   data = {
-    "admin.password" = "$2a$10$rRyBsGSHKwgGyBWEQTYeHu.S8qlZB.7Z6wY2o.7I.nF.8Y.0O2kK"
+    "admin.password" = "$2y$10$jPMr6q5WpYhPCff6O77KBeG6t7K0Ew2dOUYANnwvRtoGwmm.bjqOW"
   }
 
   depends_on = [kubernetes_namespace.argocd]
