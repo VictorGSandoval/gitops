@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-basic
+  # DOC: Nombre de la aplicación en la interfaz de Argo CD
+  namespace: argocd
+  # DOC: Namespace donde se define el recurso Application (siempre argocd)
+spec:
+  project: default
+  # DOC: Proyecto de Argo CD para agrupar aplicaciones (control de acceso)
+  
+  source:
+    repoURL: https://github.com/VictorGSandoval/gitops.git
+    # DOC: URL del repositorio Git que contiene los manifiestos Kubernetes
+    targetRevision: HEAD
+    # DOC: Rama/tag/commit a monitorear - HEAD = última confirmación en rama por defecto
+    path: manifests/basic
+    # DOC: Ruta dentro del repositorio donde están los YAMLs a desplegar
+  
+  destination:
+    server: https://kubernetes.default.svc
+    # DOC: Cluster Kubernetes destino - default.svc = mismo cluster donde está Argo CD
+    namespace: demo
+    # DOC: Namespace donde se desplegarán los recursos Kubernetes
+  
+  syncPolicy:
+    # DOC: Configuración de cómo y cuándo sincronizar
+    automated:
+      # DOC: Habilita sincronización automática al detectar cambios en Git
+      prune: true
+      # DOC: Elimina recursos del cluster si fueron eliminados en el repositorio Git
+      selfHeal: true
+      # DOC: Corrige automáticamente cambios manuales en el cluster (mantiene estado deseado)
+    syncOptions:
+      - CreateNamespace=true
+      # DOC: Crea automáticamente el namespace destino si no existe
